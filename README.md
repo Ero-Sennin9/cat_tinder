@@ -1,5 +1,6 @@
 # Cat Tinder
 Tinder, but for cats
+[Ссылка на скачивание](https://github.com/Ero-Sennin9/cat_tinder/releases/download/first-version/app-release.apk)
 
 ## Функционал приложения
 1. На главном экране отображается случайное изображение котика и название его породы
