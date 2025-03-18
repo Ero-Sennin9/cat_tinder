@@ -15,6 +15,10 @@ Tinder, but for cats
 
 ## Скриншоты
 
-
+![IMG_5864.PNG](assets/screenshots/IMG_5864.PNG)
+![IMG_5860.PNG](assets/screenshots/IMG_5860.PNG)
+![IMG_5861.PNG](assets/screenshots/IMG_5861.PNG)
+![IMG_5862.PNG](assets/screenshots/IMG_5862.PNG)
+![IMG_5863.PNG](assets/screenshots/IMG_5863.PNG)
 
 
