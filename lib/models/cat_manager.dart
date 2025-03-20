@@ -48,12 +48,21 @@ class CatManager {
       final breedID = breedMap["id"];
       final breedName = breedMap["name"];
       final breedDescription = breedMap["description"];
+      final breedTemperament = breedMap["temperament"];
+      final breedOrigin = breedMap["origin"];
       if (breedID is! String ||
           breedName is! String ||
-          breedDescription is! String) {
+          breedDescription is! String ||
+          breedTemperament is! String ||
+          breedOrigin is! String) {
         continue;
       }
-      breeds[breedID] = Breed(name: breedName, description: breedDescription);
+      breeds[breedID] = Breed(
+        name: breedName,
+        description: breedDescription,
+        temperament: breedTemperament,
+        origin: breedOrigin,
+      );
     }
     breedsIDs = breeds.keys.toList();
     breeds["error"] = Breed.error;

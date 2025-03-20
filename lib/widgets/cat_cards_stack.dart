@@ -27,8 +27,7 @@ class CatCardsStack extends StatelessWidget {
               final catFuture = entry.value;
               final index = entry.key;
               return AnimatedSwitcher(
-                key: ValueKey(index),
-                duration: Duration(milliseconds: 800),
+                duration: Duration(milliseconds: 600),
                 child: Transform.translate(
                   key: ObjectKey(catFuture),
                   offset: Offset(
@@ -40,15 +39,8 @@ class CatCardsStack extends StatelessWidget {
                   child: FutureBuilder<Cat>(
                     future: catFuture,
                     builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return SwipeableCatCard(
-                          cat: Cat.error,
-                          callbackLeft: leftCallback,
-                          callbackRight: rightCallback,
-                        );
-                      }
                       return SwipeableCatCard(
-                        cat: snapshot.data,
+                        cat: (snapshot.hasError) ? Cat.error : snapshot.data,
                         callbackLeft:
                             (index == cats.length - 1) ? leftCallback : () {},
                         callbackRight:

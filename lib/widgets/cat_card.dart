@@ -34,22 +34,32 @@ class CatCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (cat != null) CatImage(cat: cat!),
-                if (cat == null)
-                  SizedBox(
-                    width: double.infinity,
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Center(child: CircularProgressIndicator()),
-                    ),
-                  ),
+                AnimatedSwitcher(
+                  duration: Duration(milliseconds: 500),
+                  child:
+                      (cat != null)
+                          ? CatImage(cat: cat!)
+                          : SizedBox(
+                            width: double.infinity,
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Center(child: CircularProgressIndicator()),
+                            ),
+                          ),
+                ),
                 Padding(
                   padding: EdgeInsets.all(20),
-                  child: Text(
-                    (cat != null)
-                        ? CatManager.instance.breeds[cat!.breedID]!.name
-                        : "Loading cat...",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  child: AnimatedSwitcher(
+                    duration: Duration(milliseconds: 400),
+                    child: Text(
+                      (cat != null)
+                          ? CatManager.instance.breeds[cat!.breedID]!.name
+                          : "Loading cat...",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
                   ),
                 ),
               ],
