@@ -5,7 +5,7 @@ class Cat {
 
   static final error = Cat(
     imageUrl: Uri.parse(
-      "https://smartpress.by/upload/resize_cache/iblock/ced/10u0qxgzrutqnc0km37ccvmy365e6sgu/1200_630_1/black_and_white_cat_shadow_darkness_black_cat_monochrome_117775_pxhere.com-_1_.jpg",
+      "https://c.wallhere.com/photos/1a/d7/sunset_silhouette_cat_profile_jinx_supershot-870891.jpg!d",
     ),
     breedID: "error",
   );
