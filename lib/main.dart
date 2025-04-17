@@ -1,8 +1,11 @@
+import 'package:cat_tinder/representation/navigation/navigation_manager.dart';
 import 'package:flutter/material.dart';
-import 'states/navigation_manager.dart';
 import 'package:flutter/services.dart';
+import 'di/injection.dart';
 
 void main() {
+  configureDependencies();
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());

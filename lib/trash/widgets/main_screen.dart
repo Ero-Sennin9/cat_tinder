@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import '../models/cat_manager.dart';
 import '../models/cat.dart';
+import '../states/navigation_manager.dart';
 import 'likes_scope.dart';
 import 'verdict_button.dart';
 import 'likes_counter.dart';
 import 'cat_cards_stack.dart';
+import 'cat_alert.dart';
+import 'dart:async';
 
-class CatTinder extends StatefulWidget {
-  const CatTinder({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<CatTinder> createState() => _CatTinderState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _CatTinderState extends State<CatTinder> {
+class _MainScreenState extends State<MainScreen> {
   static const _cardsCount = 10;
   int _likes = 0;
+
   final List<Future<Cat>> _cats = List.generate(
     _cardsCount,
     (index) => CatManager.instance.getRandomCat(),
@@ -28,8 +32,9 @@ class _CatTinderState extends State<CatTinder> {
     });
   }
 
-  void _like() {
+  void _like(Cat cat) {
     setState(() {
+      CatManager.instance.addLikedCat(cat);
       ++_likes;
     });
   }
@@ -38,9 +43,22 @@ class _CatTinderState extends State<CatTinder> {
     _updateCat();
   }
 
-  void _likeAction() {
-    _updateCat();
-    _like();
+  void _likeAction() async {
+    await _cats.last.timeout(Duration(microseconds: 1)).then((Cat cat) {
+      _like(cat);
+      _updateCat();
+    }).catchError((error) {
+      if (error is TimeoutException) {
+        return;
+      }
+      showDialog(
+        context: context,
+        builder: (_) {
+          return const CatAlert();
+        }
+      );
+      _updateCat();
+    });
   }
 
   @override
@@ -55,7 +73,7 @@ class _CatTinderState extends State<CatTinder> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(50, 30, 50, 0),
+              padding: EdgeInsets.fromLTRB(50, 30, 50, 20),
               child: CatCardsStack(
                 cats: _cats,
                 leftCallback: _dislikeAction,
@@ -67,14 +85,14 @@ class _CatTinderState extends State<CatTinder> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: VerdictButton(
                     verdict: Verdict.dislike,
                     callback: _dislikeAction,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: VerdictButton(
                     verdict: Verdict.like,
                     callback: _likeAction,

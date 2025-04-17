@@ -19,7 +19,7 @@ class CatCardsStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 40 + _cardsIndent * cats.length),
+      padding: EdgeInsets.only(bottom: _cardsIndent * cats.length),
       child: Stack(
         alignment: Alignment.center,
         children:

@@ -11,6 +11,7 @@ abstract class RouteNames {
 class NavigationManager {
   static final instance = NavigationManager();
   final key = GlobalKey<NavigatorState>();
+
   NavigatorState get navigator => key.currentState!;
 
   static Route<Object?>? onGenerateRoute(RouteSettings settings) {

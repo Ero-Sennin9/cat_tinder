@@ -1,29 +1,46 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'cat.dart';
+import 'liked_cat.dart';
 import 'breed.dart';
 import 'dart:math';
 
 class CatManager {
-  static final instance = CatManager();
-  Map<String, Breed> breeds = {};
-  List<String> breedsIDs = [];
-  final client = http.Client();
+  final Map<String, Breed> breeds = {};
+  List<String> _breedsIDs = [];
+  final _client = http.Client();
   final breedsUrl = Uri.parse('https://api.thecatapi.com/v1/breeds');
-  final catUrl = Uri.parse('https://api.thecatapi.com/v1/images/search');
+  final catsUrl = Uri.parse('https://api.thecatapi.com/v1/images/search');
   final catNotFoundUrl = Uri.parse(
     'https://i.pinimg.com/736x/d8/ac/f8/d8acf86da7d512c130ac1bf2cb2fe39e.jpg',
   );
+  final Map<String, List<LikedCat>> _likedCatsByBreedName = {};
 
   CatManager();
 
+  void addLikedCat(Cat cat) {
+    final breedName = breeds[cat.breedID]!.name;
+    if (!_likedCatsByBreedName.containsKey(breedName)) {
+      _likedCatsByBreedName[breedName] = [];
+    }
+    final likedTime = DateTime.now();
+    _likedCatsByBreedName[breedName]!.add(LikedCat(
+      cat: cat,
+      likeTime: likedTime,
+    ));
+  }
+
+  Map<String, List<LikedCat>> getLikedCats() {
+     return _likedCatsByBreedName;
+  }
+
   Future<Cat> getRandomCat() async {
     await initBreeds();
-    final breedInd = Random().nextInt(breedsIDs.length);
-    final breedID = breedsIDs[breedInd];
+    final breedInd = Random().nextInt(_breedsIDs.length);
+    final breedID = _breedsIDs[breedInd];
     final queryParameters = {'breed_ids': breedID};
-    final resultUrl = catUrl.replace(queryParameters: queryParameters);
-    final response = await client.get(resultUrl);
+    final resultUrl = catsUrl.replace(queryParameters: queryParameters);
+    final response = await _client.get(resultUrl);
     Map<String, dynamic> catMap = jsonDecode(response.body)[0];
     final imageUrlDynamic = catMap['url'];
     final Uri imageUrl;
@@ -36,10 +53,7 @@ class CatManager {
   }
 
   Future<void> initBreeds() async {
-    if (breeds.isNotEmpty) {
-      return;
-    }
-    final response = await client.get(breedsUrl);
+    final response = await _client.get(breedsUrl);
     final List<dynamic> data = jsonDecode(response.body);
     for (final breedMap in data) {
       if (breedMap is! Map<String, dynamic>) {
@@ -64,11 +78,11 @@ class CatManager {
         origin: breedOrigin,
       );
     }
-    breedsIDs = breeds.keys.toList();
+    _breedsIDs = breeds.keys.toList();
     breeds["error"] = Breed.error;
   }
 
   void dispose() {
-    client.close();
+    _client.close();
   }
 }
