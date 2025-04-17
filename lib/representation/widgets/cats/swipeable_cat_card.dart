@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/cat.dart';
+import '../../../domain/entities/cat.dart';
 import 'cat_card.dart';
 import 'dart:math';
 
 class SwipeableCatCard extends StatefulWidget {
-  final Cat? cat;
+  final Future<Cat> catFuture;
   final Function() callbackLeft;
   final Function() callbackRight;
 
   const SwipeableCatCard({
-    required this.cat,
+    required this.catFuture,
     required this.callbackLeft,
     required this.callbackRight,
     super.key,
@@ -23,10 +23,19 @@ class _CardState extends State<SwipeableCatCard> {
   static const _responseDeviation = 20;
   static const _maxAngle = pi / 4;
   static const _cardSpeed = 0.4;
+  bool _isCatFutureCompleted = false;
 
   double _angle = 0;
   double _positionX = 0;
   double _positionY = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.catFuture.then((_) {
+      _isCatFutureCompleted = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +50,9 @@ class _CardState extends State<SwipeableCatCard> {
       },
       onPanEnd: (DragEndDetails details) {
         setState(() {
-          if (_positionX > _responseDeviation && widget.cat != null) {
+          if (_positionX > _responseDeviation && _isCatFutureCompleted) {
             widget.callbackRight();
-          } else if (_positionX < -_responseDeviation && widget.cat != null) {
+          } else if (_positionX < -_responseDeviation && _isCatFutureCompleted) {
             widget.callbackLeft();
           } else {
             _positionX = 0;
@@ -57,7 +66,7 @@ class _CardState extends State<SwipeableCatCard> {
         angle: -_angle,
         child: Transform.translate(
           offset: Offset(_positionX, _positionY),
-          child: CatCard(cat: widget.cat, action: (){}),
+          child: CatCard(catFuture: widget.catFuture, action: () {}),
         ),
       ),
     );

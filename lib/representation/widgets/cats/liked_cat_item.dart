@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models/liked_cat.dart';
-import '../models/cat.dart';
-import '../models/cat_manager.dart';
-
+import '../../../di/injection.dart';
+import '../../../domain/entities/liked_cat.dart';
+import '../breeds/breed_description_point.dart';
 import 'cat_image.dart';
-import 'breed_description_point.dart';
 import 'dismiss_cat_button.dart';
 
 class LikedCatItem extends StatelessWidget {
@@ -50,11 +48,12 @@ class LikedCatItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BreedDescriptionPoint(
-                  title: CatManager.instance.breeds[likedCat.cat.breedID]!.name,
+                  title: likedCat.cat.breed.name,
                   info: "",
                   titleSize: _titleSize,
                   infoSize: 0,
                 ),
+
                 Text(
                     DateFormat('yyyy-MM-dd HH:mm:ss').format(likedCat.likeTime),
                     style: TextStyle(

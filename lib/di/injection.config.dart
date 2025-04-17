@@ -21,14 +21,16 @@ import 'package:cat_tinder/domain/repositories/i_liked_cats_repository.dart'
 import 'package:cat_tinder/domain/usecases/delete_liked_cat_use_case.dart'
     as _i747;
 import 'package:cat_tinder/domain/usecases/dislike_cat_use_case.dart' as _i569;
-import 'package:cat_tinder/domain/usecases/get_cat_breed_use_case.dart'
-    as _i199;
 import 'package:cat_tinder/domain/usecases/get_cat_use_case.dart' as _i614;
 import 'package:cat_tinder/domain/usecases/get_liked_cats_use_case.dart'
     as _i464;
 import 'package:cat_tinder/domain/usecases/like_cat_use_case.dart' as _i970;
+import 'package:cat_tinder/representation/bloc/liked_cats_bloc/bloc.dart'
+    as _i53;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+
+import '../representation/bloc/swipeable_cats_bloc/bloc.dart';
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -44,9 +46,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i580.ICatsRepository>(
       () => _i181.CatsRepository(gh<_i671.IBreedsRepository>()),
     );
-    gh.factory<_i199.GetCatBreedUseCase>(
-      () => _i199.GetCatBreedUseCase(gh<_i671.IBreedsRepository>()),
-    );
     gh.factory<_i614.GetCatUseCase>(
       () => _i614.GetCatUseCase(gh<_i580.ICatsRepository>()),
     );
@@ -61,6 +60,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i464.GetLikedCatsUseCase>(
       () => _i464.GetLikedCatsUseCase(gh<_i1033.ILikedCatsRepository>()),
+    );
+    gh.singleton<_i53.LikedCatsBloc>(
+      () => _i53.LikedCatsBloc(
+        gh<_i464.GetLikedCatsUseCase>(),
+        gh<_i747.DeleteLikedCatUseCase>(),
+      ),
+    );
+    gh.singleton<SwipeableCatsBloc>(
+      () => SwipeableCatsBloc(
+        gh<_i614.GetCatUseCase>(),
+        gh<_i970.LikeCatUseCase>(),
+      ),
     );
     return this;
   }

@@ -13,13 +13,7 @@ class BreedsRepository implements IBreedsRepository {
   final _breedsUrl = Uri.parse('https://api.thecatapi.com/v1/breeds');
 
   BreedsRepository() {
-    _breeds = getBreeds();
-  }
-
-
-  Future<Breed?> getByCat(Cat cat) async {
-    final breeds = await _breeds;
-    return breeds[cat.breedID];
+    _breeds = _getBreeds();
   }
 
   Future<List<Breed>> getAll() async {
@@ -27,7 +21,7 @@ class BreedsRepository implements IBreedsRepository {
     return breeds.values.toList();
   }
 
-  Future<Map<String, Breed>> getBreeds() async {
+  Future<Map<String, Breed>> _getBreeds() async {
     final response = await _client.get(_breedsUrl);
     final List<dynamic> data = jsonDecode(response.body);
 

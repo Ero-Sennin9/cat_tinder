@@ -4,13 +4,6 @@ class Breed {
   final String description;
   final String temperament;
   final String origin;
-  // static const error = Breed(
-  //   name: "Error cat",
-  //   description: "Totally mysterious cat...",
-  //   temperament: "Who knows...",
-  //   origin: "Unkown country...",
-  // );
-
   const Breed({
     required this.id,
     required this.name,
@@ -18,4 +11,12 @@ class Breed {
     required this.temperament,
     required this.origin,
   });
+
+  static const error = Breed(
+    id: "error",
+    name: "Error cat",
+    description: "Totally mysterious cat...",
+    temperament: "Who knows...",
+    origin: "Unkown country...",
+  );
 }

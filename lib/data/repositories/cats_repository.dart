@@ -27,7 +27,8 @@ class CatsRepository implements ICatsRepository {
   Future<Cat> get() async {
     final allBreeds = await _breedsRepository.getAll();
     final breedInd = Random().nextInt(allBreeds.length);
-    final breedID = allBreeds[breedInd].id;
+    final breed = allBreeds[breedInd];
+    final breedID = breed.id;
 
     final queryParameters = {'breed_ids': breedID};
     final resultUrl = _catsUrl.replace(queryParameters: queryParameters);
@@ -42,7 +43,7 @@ class CatsRepository implements ICatsRepository {
       imageUrl = Uri.parse(imageUrlDynamic);
     }
 
-    return Cat(imageUrl: imageUrl, breedID: breedID);
+    return Cat(imageUrl: imageUrl, breed: breed);
   }
 
   void dispose() {

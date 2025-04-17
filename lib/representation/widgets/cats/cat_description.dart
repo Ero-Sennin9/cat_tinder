@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../states/navigation_manager.dart';
-import '../models/cat.dart';
-import '../models/cat_manager.dart';
+import '../../../di/injection.dart';
+import '../../../domain/entities/cat.dart';
+import '../../navigation/navigation_manager.dart';
 import 'cat_image.dart';
-import 'custom_back_button.dart';
-import 'breed_description.dart';
+import '../common/custom_back_button.dart';
+import '../breeds/breed_description.dart';
 
 class CatDescription extends StatelessWidget {
   final Cat cat;
@@ -25,9 +25,7 @@ class CatDescription extends StatelessWidget {
                 CatImage(cat: cat),
                 Padding(
                   padding: EdgeInsets.all(20),
-                  child: BreedDescription(
-                    breed: CatManager.instance.breeds[cat.breedID]!,
-                  ),
+                  child: BreedDescription(breed: cat.breed),
                 ),
               ],
             ),

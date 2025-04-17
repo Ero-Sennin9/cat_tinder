@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/cat.dart';
-import '../widgets/cat_tinder.dart';
-import '../widgets/cat_description.dart';
+import '../app/cat_tinder.dart';
+import '../widgets/cats/cat_description.dart';
 
 abstract class RouteNames {
   static const home = '/';

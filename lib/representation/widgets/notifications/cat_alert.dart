@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../trash/states/navigation_manager.dart';
+import '../../navigation/navigation_manager.dart';
 
 class CatAlert extends StatelessWidget {
   const CatAlert({super.key});
