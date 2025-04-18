@@ -6,3 +6,9 @@ class DeleteLikedCat extends LikedCatsEvent {
   final LikedCat likedCatToDelete;
   DeleteLikedCat(this.likedCatToDelete);
 }
+
+class LikeAction extends LikedCatsEvent {}
+
+class DislikeAction extends LikedCatsEvent {}
+
+class UpdateAction extends LikedCatsEvent {}

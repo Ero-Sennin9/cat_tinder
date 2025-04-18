@@ -11,18 +11,30 @@ class LikedCatsBloc extends Bloc<LikedCatsEvent, LikedCatsState> {
   final GetLikedCatsUseCase _getLikedCatsUseCase;
   final DeleteLikedCatUseCase _deleteLikedCatUseCase;
 
-  LikedCatsBloc(this._getLikedCatsUseCase, this._deleteLikedCatUseCase) : super(LikedCatsInitial()) {
-    _sendLikedCats();
+  LikedCatsBloc(this._getLikedCatsUseCase, this._deleteLikedCatUseCase)
+    : super(LikedCatsInitial()) {
     on<DeleteLikedCat>(_deleteLikedCatHandler);
+    on<LikeAction>(_updateActionHandler);
+    on<DislikeAction>(_updateActionHandler);
+    on<UpdateAction>(_updateActionHandler);
+
+    add(UpdateAction());
   }
-  void _deleteLikedCatHandler(DeleteLikedCat event, Emitter<LikedCatsState> emit) {
+
+  void _deleteLikedCatHandler(
+    DeleteLikedCat event,
+    Emitter<LikedCatsState> emit,
+  ) {
     _deleteLikedCatUseCase.execute(event.likedCatToDelete);
-    _sendLikedCats();
+    add(UpdateAction());
   }
-  void _sendLikedCats() {
-    _getLikedCatsUseCase.execute().then((likedCats){
+
+  void _updateActionHandler(
+    LikedCatsEvent event,
+    Emitter<LikedCatsState> emit,
+  ) {
+    _getLikedCatsUseCase.execute().then((likedCats) {
       emit(LikedCatsReady(likedCats));
     });
   }
-
 }

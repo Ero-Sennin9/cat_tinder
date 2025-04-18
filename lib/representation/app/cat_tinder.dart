@@ -21,7 +21,6 @@ class _CatTinderState extends State<CatTinder> {
     return BlocProvider<LikedCatsBloc>(
       create: (_) => getIt<LikedCatsBloc>(),
       child: Scaffold(
-        appBar: AppBar(title: Text('Cat Tinder'), centerTitle: true),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentTabIndex,
           items: [

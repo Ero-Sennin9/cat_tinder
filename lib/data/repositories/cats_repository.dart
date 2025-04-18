@@ -5,7 +5,6 @@ import 'package:cat_tinder/domain/repositories/i_breeds_repository.dart';
 import 'package:cat_tinder/domain/repositories/i_cats_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
-import '../../domain/entities/breed.dart';
 import '../../domain/entities/cat.dart';
 
 @Singleton(as: ICatsRepository)
@@ -14,16 +13,14 @@ class CatsRepository implements ICatsRepository {
 
   final _client = http.Client();
   final _catsUrl = Uri.parse('https://api.thecatapi.com/v1/images/search');
-  late final Future<List<Breed>> _allBreeds;
 
   final catNotFoundUrl = Uri.parse(
     'https://i.pinimg.com/736x/d8/ac/f8/d8acf86da7d512c130ac1bf2cb2fe39e.jpg',
   );
 
-  CatsRepository(this._breedsRepository) {
-    _allBreeds = _breedsRepository.getAll();
-  }
+  CatsRepository(this._breedsRepository);
 
+  @override
   Future<Cat> get() async {
     final allBreeds = await _breedsRepository.getAll();
     final breedInd = Random().nextInt(allBreeds.length);

@@ -4,7 +4,6 @@ import 'package:cat_tinder/domain/repositories/i_breeds_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import '../../domain/entities/breed.dart';
-import '../../domain/entities/cat.dart';
 
 @Singleton(as: IBreedsRepository)
 class BreedsRepository implements IBreedsRepository {
@@ -16,6 +15,7 @@ class BreedsRepository implements IBreedsRepository {
     _breeds = _getBreeds();
   }
 
+  @override
   Future<List<Breed>> getAll() async {
     final breeds = await _breeds;
     return breeds.values.toList();

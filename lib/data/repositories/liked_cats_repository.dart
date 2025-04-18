@@ -7,14 +7,17 @@ import '../../domain/entities/liked_cat.dart';
 class LikedCatsRepository implements ILikedCatsRepository {
   final List<LikedCat> _likedCats = [];
 
+  @override
   void add(LikedCat likedCat) {
     _likedCats.add(likedCat);
   }
 
+  @override
   bool delete(LikedCat likedCat) {
     return _likedCats.remove(likedCat);
   }
 
+  @override
   Future<List<LikedCat>> getAll() async {
     return _likedCats;
   }

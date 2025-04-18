@@ -11,44 +11,53 @@ import 'events.dart';
 class SwipeableCatsBloc extends Bloc<SwipeableCatsEvent, SwipeableCatsState> {
   final GetCatUseCase _getCatUseCase;
   final LikeCatUseCase _likeCatUseCase;
-  final List<Future<Cat>> _cats = [];
-  static const _catsCount = 10;
+  final List<Future<Cat>> cats = [];
+  static const catsCount = 10;
 
   SwipeableCatsBloc(this._getCatUseCase, this._likeCatUseCase)
     : super(SwipeableCatsInitial()) {
-    initCats();
-    emit(SwipeableCatsReady(_cats));
     on<LikeAction>(_likeActionHandler);
     on<DislikeAction>(_dislikeActionHandler);
+    on<UpdateAction>(_updateActionHandler);
+
+    _initCats();
+    add(UpdateAction());
   }
 
-  void initCats() {
-    for (var ind = 0; ind < _catsCount; ++ind) {
-      _cats.add(_getCatUseCase.execute());
+  void _initCats() {
+    for (var ind = 0; ind < catsCount; ++ind) {
+      cats.add(_getCatUseCase.execute());
     }
   }
 
-  void updateCats() {
-    _cats.removeAt(0);
-    _cats.add(_getCatUseCase.execute());
+  void _updateCats() {
+    cats.removeLast();
+    cats.insert(0, _getCatUseCase.execute());
+  }
+
+  void _updateActionHandler(
+    SwipeableCatsEvent event,
+    Emitter<SwipeableCatsState> emit,
+  ) {
+    emit(SwipeableCatsReady(cats));
   }
 
   void _likeActionHandler(
     SwipeableCatsEvent event,
     Emitter<SwipeableCatsState> emit,
   ) {
-    _cats[0].then((cat) {
+    cats.last.then((cat) {
       _likeCatUseCase.execute(cat);
     });
-    updateCats();
-    emit(SwipeableCatsReady(_cats));
+    _updateCats();
+    emit(SwipeableCatsReady(cats));
   }
 
   void _dislikeActionHandler(
     SwipeableCatsEvent event,
     Emitter<SwipeableCatsState> emit,
   ) {
-    updateCats();
-    emit(SwipeableCatsReady(_cats));
+    _updateCats();
+    emit(SwipeableCatsReady(cats));
   }
 }

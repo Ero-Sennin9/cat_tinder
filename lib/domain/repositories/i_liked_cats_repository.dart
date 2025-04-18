@@ -1,4 +1,3 @@
-import '../entities/cat.dart';
 import '../entities/liked_cat.dart';
 
 abstract class ILikedCatsRepository {

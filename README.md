@@ -1,5 +1,5 @@
 # Cat Tinder
-Tinder, but for cats
+Tinder, but for cats, and it's PRO!
 [Ссылка на скачивание](https://github.com/Ero-Sennin9/cat_tinder/releases/download/first-version/app-release.apk)
 
 ## Функционал приложения
@@ -13,8 +13,15 @@ Tinder, but for cats
    детальным описанием
 7. На экране детального описания отображается изображение котика, плюс
    отображается вся информация про его породу
+8. Добавляется экран лайкнутых котиков, со скроллящимся списком всех лайкнутых котиков. Хранятся только в рантайме, после перезагрузки приложения список пуст.
+9. Экран лайкнутых котиков отображает список с изображением, породой и датой лайка.
+10. В списке есть с возможность удаления карточки из списка. 
+11. Фильтрация по породе работает на этих экранах лайков (выпадающий список). 
+12. При выборе породы в фильтре список обновляется мгновенно.
+13. При длительной загрузке приложение показывает progress bar. 
+14. При ошибке сети отображается диалог с ошибкой.
 
-## Скриншоты
+## Скриншоты (Old version)
 
 ![IMG_5864.PNG](assets/screenshots/IMG_5864.PNG)
 ![IMG_5860.PNG](assets/screenshots/IMG_5860.PNG)
@@ -22,4 +29,18 @@ Tinder, but for cats
 ![IMG_5862.PNG](assets/screenshots/IMG_5862.PNG)
 ![IMG_5863.PNG](assets/screenshots/IMG_5863.PNG)
 
+## Скриншоты (Pro version)
 
+![IMG_5918.PNG](../../Downloads/IMG_5918.PNG)
+![IMG_5917.PNG](../../Downloads/IMG_5917.PNG)
+![IMG_5915.PNG](../../Downloads/IMG_5915.PNG)
+![IMG_5916.PNG](../../Downloads/IMG_5916.PNG)
+![IMG_5927.PNG](../../Downloads/IMG_5927.PNG)
+![IMG_5926.PNG](../../Downloads/IMG_5926.PNG)
+![IMG_5925.PNG](../../Downloads/IMG_5925.PNG)
+![IMG_5923.PNG](../../Downloads/IMG_5923.PNG)
+![IMG_5924.PNG](../../Downloads/IMG_5924.PNG)
+![IMG_5920.PNG](../../Downloads/IMG_5920.PNG)
+![IMG_5919.PNG](../../Downloads/IMG_5919.PNG)
+![IMG_5922.PNG](../../Downloads/IMG_5922.PNG)
+![IMG_5921.PNG](../../Downloads/IMG_5921.PNG)

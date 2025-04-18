@@ -1,7 +1,6 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../di/injection.dart';
 import '../../../domain/entities/liked_cat.dart';
 import '../breeds/breed_description_point.dart';
 import 'cat_image.dart';
@@ -24,7 +23,6 @@ class LikedCatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       elevation: 10,
       shape: RoundedRectangleBorder(
@@ -55,12 +53,12 @@ class LikedCatItem extends StatelessWidget {
                 ),
 
                 Text(
-                    DateFormat('yyyy-MM-dd HH:mm:ss').format(likedCat.likeTime),
-                    style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontSize: _timeSize,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  DateFormat('yyyy-MM-dd HH:mm:ss').format(likedCat.likeTime),
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: _timeSize,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ],
             ),

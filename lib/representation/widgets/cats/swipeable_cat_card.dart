@@ -52,7 +52,8 @@ class _CardState extends State<SwipeableCatCard> {
         setState(() {
           if (_positionX > _responseDeviation && _isCatFutureCompleted) {
             widget.callbackRight();
-          } else if (_positionX < -_responseDeviation && _isCatFutureCompleted) {
+          } else if (_positionX < -_responseDeviation &&
+              _isCatFutureCompleted) {
             widget.callbackLeft();
           } else {
             _positionX = 0;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../di/injection.dart';
 import '../../../domain/entities/cat.dart';
 import '../../navigation/navigation_manager.dart';
 import 'cat_image.dart';
