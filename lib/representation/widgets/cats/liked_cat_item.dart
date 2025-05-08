@@ -5,6 +5,7 @@ import '../../../domain/entities/liked_cat.dart';
 import '../breeds/breed_description_point.dart';
 import 'cat_image.dart';
 import 'dismiss_cat_button.dart';
+import '../../navigation/navigation_manager.dart';
 
 class LikedCatItem extends StatelessWidget {
   final LikedCat likedCat;
@@ -39,7 +40,15 @@ class LikedCatItem extends StatelessWidget {
               padding: EdgeInsets.only(right: _spacing),
               child: SizedBox(
                 width: _width,
-                child: CatImage(cat: likedCat.cat),
+                child: GestureDetector(
+                  onTap: () {
+                    NavigationManager.instance.navigator.pushNamed(
+                      RouteNames.catDescription,
+                      arguments: likedCat.cat,
+                    );
+                  },
+                  child: CatImage(cat: likedCat.cat),
+                ),
               ),
             ),
             Column(
