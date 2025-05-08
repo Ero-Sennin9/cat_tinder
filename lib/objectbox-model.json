@@ -1,0 +1,138 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6739761725392304603",
+      "lastPropertyId": "6:3260498664587409915",
+      "name": "Breed",
+      "properties": [
+        {
+          "id": "1:865548566348392692",
+          "name": "objectBoxId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3416170773489785854",
+          "name": "id",
+          "type": 9
+        },
+        {
+          "id": "3:354365987045929321",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:4193734412592925400",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "5:4250406797018646716",
+          "name": "temperament",
+          "type": 9
+        },
+        {
+          "id": "6:3260498664587409915",
+          "name": "origin",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:8701152811631326145",
+      "lastPropertyId": "3:7863831337529621144",
+      "name": "Cat",
+      "properties": [
+        {
+          "id": "1:7330404611851185638",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5030184229484214684",
+          "name": "imageUrl",
+          "type": 9
+        },
+        {
+          "id": "3:7863831337529621144",
+          "name": "breedId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:5481765291009631261",
+          "relationTarget": "Breed"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:5969025044699647637",
+      "lastPropertyId": "3:8331416591228362447",
+      "name": "DislikedCat",
+      "properties": [
+        {
+          "id": "1:6885280189849101669",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:217192305414724156",
+          "name": "catId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:7154445164943736418",
+          "relationTarget": "Cat"
+        },
+        {
+          "id": "3:8331416591228362447",
+          "name": "dislikeTime",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5645458071266713042",
+      "lastPropertyId": "3:5686223018297432292",
+      "name": "LikedCat",
+      "properties": [
+        {
+          "id": "1:4634331647822990116",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3164599478712384049",
+          "name": "catId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:8456243197247638605",
+          "relationTarget": "Cat"
+        },
+        {
+          "id": "3:5686223018297432292",
+          "name": "likeTime",
+          "type": 10
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:5645458071266713042",
+  "lastIndexId": "3:8456243197247638605",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

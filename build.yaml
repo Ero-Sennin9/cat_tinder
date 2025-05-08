@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      objectbox_generator:
+        options:
+          output_dir: lib/data/object_box

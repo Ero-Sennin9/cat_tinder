@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'di/injection.dart';
 
-void main() {
-  configureDependencies();
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../domain/entities/cat.dart';
 
@@ -16,13 +17,18 @@ class CatImage extends StatelessWidget {
         width: double.infinity,
         child: AspectRatio(
           aspectRatio: 1,
-          child: FadeInImage.assetNetwork(
-            fadeInDuration: Duration(milliseconds: 300),
-            placeholder: "assets/images/loading_cat.png",
-            image: cat.imageUrl.toString(),
-            width: double.infinity,
-            fit: BoxFit.cover,
+          child: CachedNetworkImage(
+              imageUrl: cat.imageUrl.toString(),
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
           ),
+          // child: FadeInImage.assetNetwork(
+          //   fadeInDuration: Duration(milliseconds: 300),
+          //   placeholder: "assets/images/loading_cat.png",
+          //   image: cat.imageUrl.toString(),
+          //   width: double.infinity,
+          //   fit: BoxFit.cover,
+          // ),
         ),
       ),
     );

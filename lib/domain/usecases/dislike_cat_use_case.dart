@@ -4,5 +4,5 @@ import '../entities/cat.dart';
 
 @injectable
 class DislikeCatUseCase {
-  void execute(Cat cat) {}
+  Future<void> execute(Cat cat) { return Future<void>.value(); }
 }

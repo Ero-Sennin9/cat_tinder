@@ -10,8 +10,8 @@ class LikeCatUseCase {
 
   LikeCatUseCase(this._likedCatsRepository);
 
-  void execute(Cat cat) {
+  Future<void> execute(Cat cat) {
     final likedCat = LikedCat(cat: cat, likeTime: DateTime.now());
-    _likedCatsRepository.add(likedCat);
+    return _likedCatsRepository.add(likedCat);
   }
 }

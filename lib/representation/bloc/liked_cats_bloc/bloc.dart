@@ -25,8 +25,9 @@ class LikedCatsBloc extends Bloc<LikedCatsEvent, LikedCatsState> {
     DeleteLikedCat event,
     Emitter<LikedCatsState> emit,
   ) {
-    _deleteLikedCatUseCase.execute(event.likedCatToDelete);
-    add(UpdateAction());
+    _deleteLikedCatUseCase.execute(event.likedCatToDelete).then((_) {
+      add(UpdateAction());
+    });
   }
 
   void _updateActionHandler(

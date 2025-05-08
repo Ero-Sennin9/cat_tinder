@@ -8,7 +8,7 @@ class DeleteLikedCatUseCase {
   final ILikedCatsRepository _likedCatsRepository;
 
   DeleteLikedCatUseCase(this._likedCatsRepository);
-  void execute(LikedCat likedCat) {
-    _likedCatsRepository.delete(likedCat);
+  Future<void> execute(LikedCat likedCat) {
+    return _likedCatsRepository.delete(likedCat);
   }
 }
