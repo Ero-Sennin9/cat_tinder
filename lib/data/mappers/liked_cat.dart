@@ -4,9 +4,8 @@ import '../../domain/entities/liked_cat.dart' as entities;
 import 'cat.dart' as cat;
 
 dto.LikedCat toObjectBoxEntity(entities.LikedCat likedCat) {
-  return dto.LikedCat(
-    likeTime: likedCat.likeTime,
-  )..cat.target = cat.toObjectBoxEntity(likedCat.cat);
+  return dto.LikedCat(likeTime: likedCat.likeTime)
+    ..cat.target = cat.toObjectBoxEntity(likedCat.cat);
 }
 
 entities.LikedCat toEntity(dto.LikedCat likedCat) {
@@ -15,4 +14,3 @@ entities.LikedCat toEntity(dto.LikedCat likedCat) {
     likeTime: likedCat.likeTime,
   );
 }
-

@@ -4,9 +4,8 @@ import '../../domain/entities/disliked_cat.dart' as entities;
 import 'cat.dart' as cat;
 
 dto.DislikedCat toObjectBoxEntity(entities.DislikedCat dislikedCat) {
-  return dto.DislikedCat(
-    dislikeTime: dislikedCat.dislikeTime,
-  )..cat.target = cat.toObjectBoxEntity(dislikedCat.cat);
+  return dto.DislikedCat(dislikeTime: dislikedCat.dislikeTime)
+    ..cat.target = cat.toObjectBoxEntity(dislikedCat.cat);
 }
 
 entities.DislikedCat toEntity(dto.DislikedCat dislikedCat) {
@@ -15,4 +14,3 @@ entities.DislikedCat toEntity(dto.DislikedCat dislikedCat) {
     dislikeTime: dislikedCat.dislikeTime,
   );
 }
-

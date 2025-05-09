@@ -18,6 +18,7 @@ class LikedCats extends StatefulWidget {
 class _LikedCatsState extends State<LikedCats> {
   String? breedFilter;
   static const _spacing = 5.0;
+  List<LikedCat> _filteredCats = [];
 
   List<String> _getBreeds(List<LikedCat> likedCats) {
     final Set<String> breeds = {};
@@ -42,6 +43,7 @@ class _LikedCatsState extends State<LikedCats> {
     return BlocBuilder<LikedCatsBloc, LikedCatsState>(
       builder: (context, state) {
         if (state is LikedCatsReady) {
+          _filteredCats = _getFilterCats(state.likedCats);
           return Scaffold(
             appBar: AppBar(
               centerTitle: false,
@@ -58,26 +60,24 @@ class _LikedCatsState extends State<LikedCats> {
                 ),
               ],
             ),
-            body: ListView(
-              children:
-                  _getFilterCats(state.likedCats).map((LikedCat likedCat) {
-                    return Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        _spacing,
-                        0,
-                        _spacing,
-                        _spacing,
-                      ),
-                      child: LikedCatItem(
-                        key: ValueKey(likedCat),
-                        likedCat: likedCat,
-                        cancelAction: () {
-                          breedFilter = null;
-                          getIt<LikedCatsBloc>().add(DeleteLikedCat(likedCat));
-                        },
-                      ),
-                    );
-                  }).toList(),
+            body: ListView.builder(
+              itemCount: _filteredCats.length,
+              cacheExtent: MediaQuery.of(context).size.height * 10,
+              itemBuilder: (context, index) {
+                final likedCat = _filteredCats[index];
+                return Padding(
+                  key: ObjectKey(likedCat),
+                  padding: EdgeInsets.fromLTRB(_spacing, 0, _spacing, _spacing),
+                  child: LikedCatItem(
+                    key: ValueKey(likedCat),
+                    likedCat: likedCat,
+                    cancelAction: () {
+                      breedFilter = null;
+                      getIt<LikedCatsBloc>().add(DeleteLikedCat(likedCat));
+                    },
+                  ),
+                );
+              },
             ),
           );
         }

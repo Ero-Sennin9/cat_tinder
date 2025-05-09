@@ -1,6 +1,5 @@
 import 'package:cat_tinder/domain/repositories/i_disliked_cats_repository.dart';
 import 'package:injectable/injectable.dart';
-import 'package:objectbox/objectbox.dart';
 
 import '../../domain/entities/disliked_cat.dart' as entities;
 import '../../data/dto/disliked_cat.dart' as dto;
@@ -22,8 +21,14 @@ class DislikedCatsRepository implements IDislikedCatsRepository {
 
   @override
   Future<bool> delete(entities.DislikedCat dislikedCat) async {
-    final query = _objectBox.query(
-        DislikedCat_.dislikeTime.equals(dislikedCat.dislikeTime.millisecond)).build();
+    final query =
+        _objectBox
+            .query(
+              DislikedCat_.dislikeTime.equals(
+                dislikedCat.dislikeTime.millisecond,
+              ),
+            )
+            .build();
     final countDeleted = query.remove();
     if (countDeleted > 0) {
       return true;
@@ -34,6 +39,13 @@ class DislikedCatsRepository implements IDislikedCatsRepository {
   @override
   Future<List<entities.DislikedCat>> getAll() async {
     final dislikedCats = _objectBox.getAll();
-    return dislikedCats.map((dislikedCat) => disliked_cat.toEntity(dislikedCat)).toList();
+    return dislikedCats
+        .map((dislikedCat) => disliked_cat.toEntity(dislikedCat))
+        .toList();
+  }
+
+  @override
+  Future<int> getAllCount() {
+    return Future<int>.value(_objectBox.count());
   }
 }

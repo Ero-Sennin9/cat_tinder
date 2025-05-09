@@ -17,8 +17,11 @@ class SwipeableCatsBloc extends Bloc<SwipeableCatsEvent, SwipeableCatsState> {
   final List<Future<Cat>> cats = [];
   static const catsCount = 10;
 
-  SwipeableCatsBloc(this._likedCatsBloc, this._getCatUseCase, this._likeCatUseCase)
-    : super(SwipeableCatsInitial()) {
+  SwipeableCatsBloc(
+    this._likedCatsBloc,
+    this._getCatUseCase,
+    this._likeCatUseCase,
+  ) : super(SwipeableCatsInitial()) {
     on<LikeAction>(_likeActionHandler);
     on<DislikeAction>(_dislikeActionHandler);
     on<UpdateAction>(_updateActionHandler);
@@ -50,7 +53,7 @@ class SwipeableCatsBloc extends Bloc<SwipeableCatsEvent, SwipeableCatsState> {
     Emitter<SwipeableCatsState> emit,
   ) {
     cats.last.then((cat) {
-      _likeCatUseCase.execute(cat).then((_){
+      _likeCatUseCase.execute(cat).then((_) {
         _likedCatsBloc.add(liked_cats_bloc.LikeAction());
       });
     });

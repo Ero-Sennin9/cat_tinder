@@ -20,4 +20,3 @@ entities.Breed toEntity(dto.Breed breed) {
     origin: breed.origin,
   );
 }
-

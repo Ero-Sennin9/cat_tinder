@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../../../domain/entities/breed.dart';
 import '../../../domain/entities/cat.dart';
 import '../../navigation/navigation_manager.dart';
-import '../notifications/network_alert.dart';
 import 'cat_image.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
@@ -37,15 +35,6 @@ class CatCard extends StatelessWidget {
                   future: catFuture,
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
-                      if (snapshot.error is SocketException ||
-                          snapshot.error is TimeoutException) {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          showDialog(
-                            context: context,
-                            builder: (_) => const NetworkAlert(),
-                          );
-                        });
-                      }
                       return CatImage(cat: Cat.error);
                     }
                     if (!snapshot.hasData) {

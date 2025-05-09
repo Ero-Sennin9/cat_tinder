@@ -18,17 +18,13 @@ class CatImage extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 1,
           child: CachedNetworkImage(
-              imageUrl: cat.imageUrl.toString(),
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+            imageUrl: cat.imageUrl.toString(),
+            placeholder:
+                (context, url) => Image.asset("assets/images/loading_cat.png"),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            fit: BoxFit.cover,
+            fadeInDuration: Duration(milliseconds: 300),
           ),
-          // child: FadeInImage.assetNetwork(
-          //   fadeInDuration: Duration(milliseconds: 300),
-          //   placeholder: "assets/images/loading_cat.png",
-          //   image: cat.imageUrl.toString(),
-          //   width: double.infinity,
-          //   fit: BoxFit.cover,
-          // ),
         ),
       ),
     );
