@@ -1,6 +1,7 @@
 # Cat Tinder
-Tinder, but for cats, and it's PRO!
-[Ссылка на скачивание](https://github.com/Ero-Sennin9/cat_tinder/releases/download/first-version/app-release.apk)
+Tinder, but for cats, and it's PRO, and it also supports offline mode!
+
+[Ссылка на скачивание](https://github.com/Ero-Sennin9/cat_tinder/releases/tag/offline-version)
 
 ## Функционал приложения
 1. На главном экране отображается случайное изображение котика и название его породы
@@ -20,27 +21,38 @@ Tinder, but for cats, and it's PRO!
 12. При выборе породы в фильтре список обновляется мгновенно.
 13. При длительной загрузке приложение показывает progress bar. 
 14. При ошибке сети отображается диалог с ошибкой.
+15. Приложение работает в оффлайн-режиме: отображает ранее загруженных котиков.
+16. Лайки/дизлайки сохраняются между выходами из приложения.
+17. Изображения котиков кэшируются и доступны без сети.
+18. Показывается стутус сети в левом верхнем углу на главном экране.
+19. При отстутствии сети пользователь уведомляется не блокирующим образом.
 
 ## Скриншоты (Old version)
 
-![IMG_5864.PNG](assets/screenshots/IMG_5864.PNG)
-![IMG_5860.PNG](assets/screenshots/IMG_5860.PNG)
-![IMG_5861.PNG](assets/screenshots/IMG_5861.PNG)
-![IMG_5862.PNG](assets/screenshots/IMG_5862.PNG)
-![IMG_5863.PNG](assets/screenshots/IMG_5863.PNG)
+![IMG_5864.PNG](assets/screenshots/first_version/IMG_5864.PNG)
+![IMG_5860.PNG](assets/screenshots/first_version/IMG_5860.PNG)
+![IMG_5861.PNG](assets/screenshots/first_version/IMG_5861.PNG)
+![IMG_5862.PNG](assets/screenshots/first_version/IMG_5862.PNG)
+![IMG_5863.PNG](assets/screenshots/first_version/IMG_5863.PNG)
 
 ## Скриншоты (Pro version)
 
-![IMG_5915.PNG](assets/screenshots/IMG_5915.PNG)
-![IMG_5916.PNG](assets/screenshots/IMG_5916.PNG)
-![IMG_5917.PNG](assets/screenshots/IMG_5917.PNG)
-![IMG_5918.PNG](assets/screenshots/IMG_5918.PNG)
-![IMG_5919.PNG](assets/screenshots/IMG_5919.PNG)
-![IMG_5920.PNG](assets/screenshots/IMG_5920.PNG)
-![IMG_5921.PNG](assets/screenshots/IMG_5921.PNG)
-![IMG_5922.PNG](assets/screenshots/IMG_5922.PNG)
-![IMG_5923.PNG](assets/screenshots/IMG_5923.PNG)
-![IMG_5924.PNG](assets/screenshots/IMG_5924.PNG)
-![IMG_5926.PNG](assets/screenshots/IMG_5926.PNG)
-![IMG_5925.PNG](assets/screenshots/IMG_5925.PNG)
-![IMG_5927.PNG](assets/screenshots/IMG_5927.PNG)
+![IMG_5915.PNG](assets/screenshots/pro_version/IMG_5915.PNG)
+![IMG_5916.PNG](assets/screenshots/pro_version/IMG_5916.PNG)
+![IMG_5917.PNG](assets/screenshots/pro_version/IMG_5917.PNG)
+![IMG_5918.PNG](assets/screenshots/pro_version/IMG_5918.PNG)
+![IMG_5919.PNG](assets/screenshots/pro_version/IMG_5919.PNG)
+![IMG_5920.PNG](assets/screenshots/pro_version/IMG_5920.PNG)
+![IMG_5921.PNG](assets/screenshots/pro_version/IMG_5921.PNG)
+![IMG_5922.PNG](assets/screenshots/pro_version/IMG_5922.PNG)
+![IMG_5923.PNG](assets/screenshots/pro_version/IMG_5923.PNG)
+![IMG_5924.PNG](assets/screenshots/pro_version/IMG_5924.PNG)
+![IMG_5926.PNG](assets/screenshots/pro_version/IMG_5926.PNG)
+![IMG_5925.PNG](assets/screenshots/pro_version/IMG_5925.PNG)
+![IMG_5927.PNG](assets/screenshots/pro_version/IMG_5927.PNG)
+
+## Скриншоты (Offline version)
+
+![IMG_6011.PNG](assets/screenshots/offline_version/IMG_6011.PNG)
+![IMG_6012.PNG](assets/screenshots/offline_version/IMG_6012.PNG)
+![IMG_6013.PNG](assets/screenshots/offline_version/IMG_6013.PNG)
