@@ -15,7 +15,6 @@ class LikedCatsBloc extends Bloc<LikedCatsEvent, LikedCatsState> {
     : super(LikedCatsInitial()) {
     on<DeleteLikedCat>(_deleteLikedCatHandler);
     on<LikeAction>(_updateActionHandler);
-    on<DislikeAction>(_updateActionHandler);
     on<UpdateAction>(_updateActionHandler);
 
     add(UpdateAction());

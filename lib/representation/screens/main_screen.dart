@@ -7,15 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../di/injection.dart';
 import '../../domain/entities/cat.dart';
 import '../../domain/services/i_internet_connection_service.dart';
-import '../bloc/liked_cats_bloc/bloc.dart';
+import '../bloc/liked_cats_count_bloc/bloc.dart';
 import '../bloc/network_status_bloc/bloc.dart';
 import '../bloc/network_status_bloc/states.dart';
 import '../bloc/swipeable_cats_bloc/events.dart' as swipeable_cats;
-import '../bloc/liked_cats_bloc/events.dart' as liked_cats;
 import '../widgets/common/verdict_button.dart';
 import '../widgets/notifications/cat_alert.dart';
-import '../widgets/notifications/likes_counter.dart';
 import '../widgets/cats/cat_cards_stack.dart';
+import '../widgets/notifications/likes_counter.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -25,9 +24,23 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  void _dislikeAction() {
-    getIt<SwipeableCatsBloc>().add(swipeable_cats.DislikeAction());
-    getIt<LikedCatsBloc>().add(liked_cats.DislikeAction());
+  void _dislikeAction() async {
+    final cats = getIt<SwipeableCatsBloc>().cats;
+    bool isCatReady = false;
+    await cats.last
+        .timeout(Duration(microseconds: 1))
+        .then((Cat cat) {
+          isCatReady = true;
+        })
+        .catchError((error) {
+          if (error is TimeoutException) {
+            return;
+          }
+          isCatReady = true;
+        });
+    if (isCatReady) {
+      getIt<SwipeableCatsBloc>().add(swipeable_cats.DislikeAction());
+    }
   }
 
   void _likeAction() async {
@@ -36,7 +49,6 @@ class _MainScreenState extends State<MainScreen> {
         .timeout(Duration(microseconds: 1))
         .then((Cat cat) {
           getIt<SwipeableCatsBloc>().add(swipeable_cats.LikeAction());
-          getIt<LikedCatsBloc>().add(liked_cats.LikeAction());
         })
         .catchError((error) {
           if (error is TimeoutException) {
@@ -81,6 +93,9 @@ class _MainScreenState extends State<MainScreen> {
           body: BlocBuilder<NetworkStatusBloc, NetworkStatusState>(
             builder: (context, state) {
               if (state is NetworkStatusReady) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                });
                 switch (state.connectionStatus) {
                   case ConnectionStatus.disconnected:
                     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -98,9 +113,6 @@ class _MainScreenState extends State<MainScreen> {
                       );
                     });
                   case ConnectionStatus.connected:
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    });
                 }
               }
               return Column(
@@ -112,10 +124,10 @@ class _MainScreenState extends State<MainScreen> {
                     padding: EdgeInsets.fromLTRB(50, 30, 50, 20),
                     child: CatCardsStack(
                       callbackLeft: () {
-                        getIt<LikedCatsBloc>().add(liked_cats.DislikeAction());
+                        _dislikeAction();
                       },
                       callbackRight: () {
-                        getIt<LikedCatsBloc>().add(liked_cats.LikeAction());
+                        _likeAction();
                       },
                     ),
                   ),
@@ -139,7 +151,10 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ],
                   ),
-                  LikesCounter(),
+                  BlocProvider<LikedCatsCountBloc>(
+                    create: (_) => getIt<LikedCatsCountBloc>(),
+                    child: LikesCounter(),
+                  ),
                 ],
               );
             },

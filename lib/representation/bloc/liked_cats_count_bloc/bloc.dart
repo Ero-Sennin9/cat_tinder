@@ -6,12 +6,14 @@ import 'events.dart';
 import 'states.dart';
 
 @singleton
-class LikedCatsBloc extends Bloc<LikedCatsCountEvent, LikedCatsCountState> {
+class LikedCatsCountBloc
+    extends Bloc<LikedCatsCountEvent, LikedCatsCountState> {
   final GetLikedCatsQuantityUseCase _getLikedCatsQuantityUseCase;
 
-  LikedCatsBloc(this._getLikedCatsQuantityUseCase)
+  LikedCatsCountBloc(this._getLikedCatsQuantityUseCase)
     : super(LikedCatsCountInitial()) {
     on<UpdateAction>(_updateActionHandler);
+    on<LikeAction>(_updateActionHandler);
     add(UpdateAction());
   }
 

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../di/injection.dart';
 import '../../../domain/entities/cat.dart';
 import '../../bloc/swipeable_cats_bloc/bloc.dart';
-import '../../bloc/swipeable_cats_bloc/events.dart';
 import 'swipeable_cat_card.dart';
 
 class CatCardsStack extends StatelessWidget {
@@ -57,18 +56,12 @@ class CatCardsStack extends StatelessWidget {
                               callbackLeft:
                                   (index == state.cats.length - 1)
                                       ? () {
-                                        getIt<SwipeableCatsBloc>().add(
-                                          DislikeAction(),
-                                        );
                                         callbackLeft();
                                       }
                                       : () {},
                               callbackRight:
                                   (index == state.cats.length - 1)
                                       ? () {
-                                        getIt<SwipeableCatsBloc>().add(
-                                          LikeAction(),
-                                        );
                                         callbackRight();
                                       }
                                       : () {},

@@ -29,13 +29,13 @@ class _LikedCatsState extends State<LikedCats> {
   }
 
   List<LikedCat> _getFilterCats(List<LikedCat> likedCats) {
-    final List<LikedCat> filteredLikedCats = [];
+    final List<LikedCat> filteredCats = [];
     for (final likedCat in likedCats) {
       if (breedFilter == null || likedCat.cat.breed.name == breedFilter) {
-        filteredLikedCats.add(likedCat);
+        filteredCats.add(likedCat);
       }
     }
-    return filteredLikedCats;
+    return filteredCats;
   }
 
   @override

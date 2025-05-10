@@ -53,6 +53,7 @@ Tinder, but for cats, and it's PRO, and it also supports offline mode!
 
 ## Скриншоты (Offline version)
 
-![IMG_6011.PNG](assets/screenshots/offline_version/IMG_6011.PNG)
-![IMG_6012.PNG](assets/screenshots/offline_version/IMG_6012.PNG)
-![IMG_6013.PNG](assets/screenshots/offline_version/IMG_6013.PNG)
+![IMG_6017.PNG](assets/screenshots/offline_version/IMG_6017.PNG)
+![IMG_6016.PNG](assets/screenshots/offline_version/IMG_6016.PNG)
+![IMG_6018.PNG](assets/screenshots/offline_version/IMG_6018.PNG)
+![IMG_6019.PNG](assets/screenshots/offline_version/IMG_6019.PNG)

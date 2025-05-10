@@ -9,6 +9,4 @@ class DeleteLikedCat extends LikedCatsEvent {
 
 class LikeAction extends LikedCatsEvent {}
 
-class DislikeAction extends LikedCatsEvent {}
-
 class UpdateAction extends LikedCatsEvent {}
